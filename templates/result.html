@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Detection Result</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1f1f, #121212);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-container {
+      background: rgba(44, 44, 44, 0.9);
+      border-radius: 25px;
+      padding: 50px 40px;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.15);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .status-box {
+      position: relative;
+      background: rgba(26, 26, 26, 0.6);
+      color: #ffffff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 auto 25px;
+      box-shadow: 0 0 15px #800000, 0 0 35px #80000033;
+      display: inline-block;
+      overflow: hidden;
+      backdrop-filter: blur(4px);
+      z-index: 1;
+      min-width: 300px;
+      min-height: 100px;
+      text-align: center;
+    }
+
+    .status-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url('https://cdn.cssauthor.com/wp-content/uploads/2013/02/10_1.png?strip=all&lossy=1&ssl=1');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.3;
+      filter: blur(3px); /* Reduced blur here */
+      z-index: -1;
+    }
+
+    .confidence {
+      font-size: 18px;
+      margin-top: 15px;
+      color: #ccc;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #ff6666;
+    }
+
+    button {
+      margin-top: 35px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid #800000;
+      border-radius: 8px;
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+    }
+
+    button:hover {
+      background-color: #800000;
+      box-shadow: 0 0 10px #80000066;
+    }
+  </style>
+</head>
+<body>
+  <div class="result-container">
+    <h1>Detection Result</h1>
+
+    <div class="status-box">
+      {{ prediction }}
+    </div>
+
+    <div class="confidence">
+      Confidence Level: <strong>{{ confidence }}%</strong>
+    </div>
+
+    <button onclick="window.location.href='/'">🔁 Try Another</button>
+  </div>
+  <div>
+    <h2 style="position: fixed; bottom: 30px; right: 30px; color: #ff5252;margin-left: 400px;">@White Hat</h2>
+  </div>
+</body>
+</html>
+ 

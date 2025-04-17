@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deepfake Detection</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #121212;
+      font-family: 'Segoe UI', sans-serif;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .card h2 {
+      color: #ff5252;
+      margin-bottom: 20px;
+    }
+
+    .drop-zone {
+      position: relative;
+      background: #2a2a2a;
+      border: 2px dashed #555;
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: border-color 0.3s;
+      overflow: hidden;
+      text-align: center;
+      display: block;
+    }
+
+    .drop-zone.hover {
+      border-color: #ff5252;
+    }
+
+    .drop-zone p {
+      color: #aaa;
+      margin: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .preview-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      z-index: 1;
+      display: none;
+      margin-top: 10px;
+      object-fit: contain;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #ff5252;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e53935;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Deepfake Detection</h2>
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+      <div class="drop-zone" id="dropZone">
+        <p id="dropText">Click or Drag & Drop image here</p>
+        <input type="file" id="fileInput" name="file" accept="image/*" required />
+        <img id="preview" class="preview-img" alt="Preview" />
+      </div>
+      <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
+  </div>
+  <div>
+    <h2 style="position: fixed; bottom: 30px; right: 30px; color: #ff5252;margin-left: 400px;">@White Hat</h2>
+  </div>
+
+  <script>
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+    const dropText = document.getElementById('dropText');
+    const submitBtn = document.getElementById('submitBtn');
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('hover');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        fileInput.files = e.dataTransfer.files;
+        showPreview(file);
+      }
+    });
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('hover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('hover');
+    });
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file && file.type.startsWith('image/')) {
+        showPreview(file);
+      }
+    });
+
+    function showPreview(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        preview.src = reader.result;
+        preview.onload = () => {
+          preview.style.display = 'block';
+          dropText.style.display = 'none';
+          submitBtn.disabled = false;
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+</body>
+</html>

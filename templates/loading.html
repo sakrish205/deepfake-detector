@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Analyzing...</title>
+  <meta http-equiv="refresh" content="2;url=/analyze/{{ filename }}" />
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      background-color: #1e1e1e;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      width: 300px;
+    }
+
+    .box h1 {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    .loader {
+      border: 5px solid #333;
+      border-top: 5px solid white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Analyzing... Please wait.</h1>
+    <div class="loader"></div>
+ 
+  </div>
+  <div>
+    <h2 style="position: fixed; bottom: 30px; right: 30px; color: #ff5252;margin-left: 400px;">@White Hat</h2>
+  </div>
+</body>
+</html>
