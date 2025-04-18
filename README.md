@@ -95,7 +95,11 @@ python app.py
 
 ## 👥 Contributors
 
-- [Your Name](https://github.com/yourusername)
+- [Saketha Krishna](https://github.com/sakrish205)
+- [Berlin Selvia](https://github.com/berlincodez)
+- [Tamil Selvan](https://github.com/tamilselvan-s-d)
+- [Suren](https://github.com/Suren-GPU)
+- [Varun]()
 
 ## 📄 License
 
